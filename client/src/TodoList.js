@@ -11,15 +11,27 @@ import ExpansionPanelActions from "@material-ui/core/ExpansionPanelActions/Expan
 import {ExpandMore, Delete, AllInbox} from '@material-ui/icons';
 import Fab from "@material-ui/core/Fab/Fab";
 import {submitDeleteTodo} from "./actions/Submit_DeleteTodo";
+import axios from "axios";
+import moment from 'moment'
 
 
 class TodoList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: props.data
+            data: props.data,
+            show: false
         }
         this.onDeleteTodo=this.onDeleteTodo.bind(this);
+        this.onArchivedTodo=this.onArchivedTodo.bind(this);
+    }
+    onArchivedTodo = (idx) => () => {
+        axios.get(`http://localhost:3001/sql/archive`,{
+            params:{
+                id: this.state.data[idx].ID
+            }
+        });
+        this.props.submitDeleteTodo(idx);
     }
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.data !== this.props.data) {
@@ -28,9 +40,19 @@ class TodoList extends Component {
         }
     }
     onDeleteTodo= (idx) => () =>{
+        axios.get(`http://localhost:3001/sql/delete`,{
+            params:{
+                id: this.state.data[idx].ID
+            }
+        });
         this.props.submitDeleteTodo(idx);
     }
     componentDidMount(){
+        if(this.props.type === 'archive')
+        {
+            this.setState({show: false})
+        }
+        else{ this.setState({show:true})}
     }
 
     render() {
@@ -42,6 +64,7 @@ class TodoList extends Component {
                             <ExpansionPanelSummary expandIcon={<ExpandMore/>}>
                                 <Typography>{e.name}</Typography>
 
+                                {/*<Typography style={{textAlign: 'center'}}>{e.date}</Typography>*/}
                             </ExpansionPanelSummary>
                             <ExpansionPanelDetails>
                                 <Typography>
@@ -51,11 +74,11 @@ class TodoList extends Component {
                             </ExpansionPanelDetails>
                             <Divider />
                             <ExpansionPanelActions>
-                                <Fab variant="extended" onClick={this.onDeleteTodo(idx).bind(this)} aria-label="Delete" style={{backgroundColor: '#ff1744'}} >
+                                <Fab variant="extended" onClick={this.onDeleteTodo(idx).bind(this)} aria-label="Delete" style={{backgroundColor: '#ff1744'}}>
                                     <Delete/>
                                     Delete
                                 </Fab>
-                                <Fab variant="extended" aria-label="Archive" style={{backgroundColor: '#00e676'}}>
+                                <Fab variant="extended" onClick={this.onArchivedTodo(idx).bind(this)} aria-label="Archive" style={this.state.show ? {backgroundColor: '#00e676'} : { display: 'none' }} >
                                     <AllInbox />
                                     Archive
                                 </Fab>

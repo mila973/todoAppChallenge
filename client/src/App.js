@@ -6,11 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Menu from './Menu.js'
 //import Home from './home.js';
 import Todos from './Todos';
-
-
-
-
-const About = () => <h1>ARCHIVE</h1>;
+import Archive from './Archive';
 
 
 class ModalSwitch extends React.Component {
@@ -44,7 +40,7 @@ class ModalSwitch extends React.Component {
                         <br/>
                             <Switch location={isModal ? this.previousLocation : location} ref={this.switch} >
                                 <Route path="/" exact component={Todos} />
-                                <Route path="/archive" component={About} />
+                                <Route path="/archive" component={Archive} />
                             </Switch>
                     </Grid>
                 </Grid>

@@ -8,7 +8,12 @@ import Dialog from "@material-ui/core/Dialog/Dialog";
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {submitShowDialog} from "./actions/Submit_ShowDialog";
+import {submitNewTodo} from "./actions/Submit_NewTodo";
+import {submitDeleteTodo} from "./actions/Submit_DeleteTodo";
 import TodoList from "./TodoList";
+import axios from 'axios';
+import moment from 'moment'
+import {submitArchiveTodo} from "./actions/Submit_ArchiveTodo";
 
 
 
@@ -33,25 +38,35 @@ class Todos extends Component {
         if (prevProps.showDialog.open !== this.props.showDialog.open) {
             this.setState({open: this.props.showDialog.open})
         }
-        if (prevProps.newTodo !== this.props.newTodo) {
-            if(this.props.newTodo.name!== null){
-                this.setState({ list: this.state.list.concat([{name: this.props.newTodo.name, description: this.props.newTodo.description}]) });
+        if (prevProps.newTodo !== this.props.newTodo || prevProps.deleteTodo !== this.props.deleteTodo || prevProps.archiveTodo !== this.props.archiveTodo) {
+            axios.get(`http://localhost:3001/sql/get`)
+                .then(res => {
+                    this.setState({list: res.data});
+                })
+            if(this.props.newTodo !== 0){
+                this.props.submitNewTodo(0);
+            }
+            if(this.props.deleteTodo.id!== -1) {
+                this.props.submitDeleteTodo(-1);
+            }
+            if(this.props.archiveTodo !== 0) {
+                this.props.submitArchiveTodo(0);
             }
         }
-        if (prevProps.deleteTodo !== this.props.deleteTodo) {
-            if(this.props.deleteTodo.id!== null){
-                this.setState({ list: this.state.list.filter((s, sidx) => this.props.deleteTodo.id !== sidx) });
-                }
-        }
-
-
+    }
+    componentDidMount()
+    {
+        axios.get(`http://localhost:3001/sql/get`)
+            .then(res => {
+                this.setState({list: res.data});
+            })
     }
 
     render() {
         return  (
             <div>
                 <h1>TODO</h1>
-                <TodoList data={this.state.list}/>
+                <TodoList type={'todos'} data={this.state.list}/>
                 <Dialog
                     open={this.state.open}
                     onClose={this.handleClose.bind(this)}
@@ -81,7 +96,7 @@ function mapStateToProps(state) {
 }
 
 function matchDispatchToProps(dispatch){
-    return bindActionCreators({submitShowDialog: submitShowDialog}, dispatch);
+    return bindActionCreators({submitShowDialog: submitShowDialog, submitNewTodo: submitNewTodo, submitDeleteTodo: submitDeleteTodo, submitArchiveTodo: submitArchiveTodo}, dispatch);
 }
 
 

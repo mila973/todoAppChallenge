@@ -1,9 +1,6 @@
-export const submitNewTodo = (var1, var2) => {
+export const submitNewTodo = (var1) => {
     return {
         type: 'SUBMIT_NEW_TODO',
-        payload: {
-            name: var1,
-            description: var2
-        }
+        payload: var1
     }
 };

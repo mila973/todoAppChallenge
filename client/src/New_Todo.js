@@ -9,6 +9,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {submitNewTodo} from './actions/Submit_NewTodo';
 import {submitShowDialog} from "./actions/Submit_ShowDialog";
+import axios from "axios";
 
 
 class NewTodo extends Component {
@@ -25,7 +26,13 @@ class NewTodo extends Component {
         this.props.submitShowDialog(false);
     }
     handleSubmit(){
-        this.props.submitNewTodo(this.state.name, this.state.description);
+        axios.get(`http://localhost:3001/sql/create`,{
+            params:{
+                name: this.state.name,
+                description: this.state.description
+            }
+        });
+        this.props.submitNewTodo(1);
         this.props.submitShowDialog(false);
     }
 

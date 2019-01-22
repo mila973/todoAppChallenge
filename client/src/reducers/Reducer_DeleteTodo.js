@@ -1,4 +1,4 @@
-export default function (state = {id: null}, action) {
+export default function (state = {id: -1}, action) {
     switch (action.type) {
         case 'SUBMIT_DELETE_TODO':
             return action.payload;
