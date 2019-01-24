@@ -64,16 +64,18 @@ class TodoList extends Component {
                             <ExpansionPanelSummary expandIcon={<ExpandMore/>}>
                                 <Typography>{e.name}</Typography>
 
-                                {/*<Typography style={{textAlign: 'center'}}>{e.date}</Typography>*/}
+
                             </ExpansionPanelSummary>
                             <ExpansionPanelDetails>
                                 <Typography>
                                     <b>Description:</b><br/>
                                     {e.description}
                                 </Typography>
+
                             </ExpansionPanelDetails>
                             <Divider />
                             <ExpansionPanelActions>
+                                <Typography style={{textAlign: 'left', paddingRight: '50px'}}>{!this.state.show ? "Archived:" : "Created:" }{e.date}</Typography>
                                 <Fab variant="extended" onClick={this.onDeleteTodo(idx).bind(this)} aria-label="Delete" style={{backgroundColor: '#ff1744'}}>
                                     <Delete/>
                                     Delete
@@ -82,6 +84,7 @@ class TodoList extends Component {
                                     <AllInbox />
                                     Archive
                                 </Fab>
+
                             </ExpansionPanelActions>
                         </ExpansionPanel>
                         <br/>
