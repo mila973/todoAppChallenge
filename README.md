@@ -1,7 +1,7 @@
 # TodoAppChallenge
 
 Project uses Express and React frameworks for backend and frontend. Also application uses MySQL as database.Project is dockerized
-and doesn't require installation of many frameworks and languages development kits, only docker.
+and doesn't require installation of frameworks and languages development kits, only docker.
 
 # Set up the project
 
