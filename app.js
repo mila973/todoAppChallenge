@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const cors = require('cors')
+//var cors = require('cors')
 var bodyParser = require('body-parser');
 var time = require('express-timestamp');
 
@@ -50,6 +50,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.use(cors());
+//app.use(cors());
 
 module.exports = app;

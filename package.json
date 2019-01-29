@@ -6,6 +6,7 @@
     "start": "node ./bin/www",
     "dev": "concurrently \"npm start\" \"npm run front\" ",
     "front": "cd client && npm start"
+	"docker-build": "docker build -t nodejs"
   },
   "devDependencies": {
     "concurrently": "^3.6.1"
