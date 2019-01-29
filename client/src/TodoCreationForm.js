@@ -11,6 +11,12 @@ import {submitNewTodo} from './actions/Submit_NewTodo';
 import {submitShowDialog} from "./actions/Submit_ShowDialog";
 import axios from "axios";
 
+/*
+
+    Dialog of new Todo creation and sending data to the database
+
+ */
+
 
 class NewTodo extends Component {
     constructor(props) {

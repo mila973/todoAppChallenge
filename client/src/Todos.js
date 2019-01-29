@@ -3,18 +3,22 @@ import {withRouter} from "react-router-dom";
 import Tooltip from "@material-ui/core/Tooltip/Tooltip";
 import Fab from "@material-ui/core/Fab/Fab";
 import {Add} from "@material-ui/icons";
-import NewTodo from "./New_Todo.js";
+import NewTodo from "./TodoCreationForm.js";
 import Dialog from "@material-ui/core/Dialog/Dialog";
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {submitShowDialog} from "./actions/Submit_ShowDialog";
 import {submitNewTodo} from "./actions/Submit_NewTodo";
 import {submitDeleteTodo} from "./actions/Submit_DeleteTodo";
-import TodoList from "./TodoList";
+import TodoList from "./ItemsList";
 import axios from 'axios';
 import {submitArchiveTodo} from "./actions/Submit_ArchiveTodo";
 
-
+/*
+*
+* Main unmarkded as archived todos class which communicates with backend and MySQL
+*
+* */
 
 
 class Todos extends Component {

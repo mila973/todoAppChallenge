@@ -8,7 +8,9 @@ const corsOptions = {
     origin: 'http://localhost:3000'
 }
 
-
+/*
+* MySQL API to communicate with database
+* */
 router.get('/get',  cors(corsOptions), function(req, resp){
     sql.query("SELECT * FROM todo WHERE `todo`.`archived`= 0;", function(error, rows, field){
         if(!!error)

@@ -4,9 +4,16 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {submitNewTodo} from "./actions/Submit_NewTodo";
 import {submitDeleteTodo} from "./actions/Submit_DeleteTodo";
-import TodoList from "./TodoList";
+import TodoList from "./ItemsList";
 import axios from 'axios';
 import {submitArchiveTodo} from "./actions/Submit_ArchiveTodo";
+
+
+/*
+*
+* Modal of archived items page
+*
+* */
 
 
 

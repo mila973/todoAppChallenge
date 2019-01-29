@@ -3,12 +3,11 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-//var cors = require('cors')
 var bodyParser = require('body-parser');
 var time = require('express-timestamp');
 
 
-
+//Getting routes from routes files
 var usersRouter = require('./routes/users');
 var sqlRouter = require('./routes/sql');
 
@@ -25,8 +24,7 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use(time.init);
 
-
-//app.use('/', indexRouter);
+//using routes of frontend and api
 app.use('/users', usersRouter);
 app.use('/sql', sqlRouter);
 app.get('*', (req, res) => {
@@ -48,7 +46,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-//app.use(cors());
 
 module.exports = app;

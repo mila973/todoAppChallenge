@@ -8,6 +8,13 @@ import Todos from './Todos';
 import Archive from './Archive';
 
 
+/*
+*
+* Initial Class with router and paths
+*
+* */
+
+
 class ModalSwitch extends React.Component {
 
     previousLocation = this.props.location;
@@ -38,7 +45,9 @@ class ModalSwitch extends React.Component {
                     <Grid item xs={8}>
                         <br/>
                             <Switch location={isModal ? this.previousLocation : location} ref={this.switch} >
+                                {/*All unmarked as archived todos*/}
                                 <Route path="/" exact component={Todos} />
+                                {/*All archived todos*/}
                                 <Route path="/archive" component={Archive} />
                             </Switch>
                     </Grid>

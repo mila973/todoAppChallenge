@@ -14,7 +14,7 @@ import {submitDeleteTodo} from "./actions/Submit_DeleteTodo";
 import axios from "axios";
 
 
-class TodoList extends Component {
+class ItemsList extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -103,4 +103,4 @@ function matchDispatchToProps(dispatch){
     return bindActionCreators({submitDeleteTodo: submitDeleteTodo}, dispatch);
 }
 
-export default withRouter(connect( mapStateToProps,matchDispatchToProps)(TodoList));
+export default withRouter(connect( mapStateToProps,matchDispatchToProps)(ItemsList));

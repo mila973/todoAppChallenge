@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import allReducers from './reducers/store';
-//import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 
+
+// Creating Redux store
 const store = createStore(
     allReducers);
 
