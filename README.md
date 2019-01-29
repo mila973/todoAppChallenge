@@ -13,7 +13,7 @@ Docker setup. You can get installation files and setup from: <a>https://www.dock
 <b>2.</b> In terminal navigate to project path.</br>
 <b>3.</b> Build docker image of Nodejs: "<b>docker build -t nodejs .</b>"</br>
 <b>4.</b> Build docker image of MySQL: "<b>cd mysql-microservice && docker build -t mysql .</b>"</br>
-<b>5.</b> Run docker image of MySQL: "<b>docker run --name mysql-db test-mysql</b>"</br>
+<b>5.</b> Run docker image of MySQL: "<b>docker run --name mysql-db mysql</b>"</br>
 <b>6.</b> Find your database host: "<b>docker inspect -f "{{ .NetworkSettings.IPAddress }}" mysql-db</b>"</br>
 <b>7.</b> Run docker image of Nodejs and Connect it to database:</br>
 <b>"docker run -e MYSQL_USER='root' -e MYSQL_PASSWORD='password' -e MYSQL_HOST='[Result of previous command]' -p 3001:3001  --name node-app nodejs</b>"</br>
