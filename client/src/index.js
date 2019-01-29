@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import serviceWorker from './serviceWorker';
 import allReducers from './reducers/store';
 //import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';

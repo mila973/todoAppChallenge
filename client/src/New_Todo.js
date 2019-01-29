@@ -26,7 +26,7 @@ class NewTodo extends Component {
         this.props.submitShowDialog(false);
     }
     handleSubmit(){
-        axios.get(`http://localhost:3001/sql/create`,{
+        axios.get(`/sql/create`,{
             params:{
                 name: this.state.name,
                 description: this.state.description

@@ -12,7 +12,6 @@ import {ExpandMore, Delete, AllInbox} from '@material-ui/icons';
 import Fab from "@material-ui/core/Fab/Fab";
 import {submitDeleteTodo} from "./actions/Submit_DeleteTodo";
 import axios from "axios";
-import moment from 'moment'
 
 
 class TodoList extends Component {
@@ -26,7 +25,7 @@ class TodoList extends Component {
         this.onArchivedTodo=this.onArchivedTodo.bind(this);
     }
     onArchivedTodo = (idx) => () => {
-        axios.get(`http://localhost:3001/sql/archive`,{
+        axios.get(`/sql/archive`,{
             params:{
                 id: this.state.data[idx].ID
             }
@@ -40,7 +39,7 @@ class TodoList extends Component {
         }
     }
     onDeleteTodo= (idx) => () =>{
-        axios.get(`http://localhost:3001/sql/delete`,{
+        axios.get(`/sql/delete`,{
             params:{
                 id: this.state.data[idx].ID
             }

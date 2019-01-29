@@ -12,7 +12,6 @@ import {submitNewTodo} from "./actions/Submit_NewTodo";
 import {submitDeleteTodo} from "./actions/Submit_DeleteTodo";
 import TodoList from "./TodoList";
 import axios from 'axios';
-import moment from 'moment'
 import {submitArchiveTodo} from "./actions/Submit_ArchiveTodo";
 
 
@@ -39,7 +38,7 @@ class Todos extends Component {
             this.setState({open: this.props.showDialog.open})
         }
         if (prevProps.newTodo !== this.props.newTodo || prevProps.deleteTodo !== this.props.deleteTodo || prevProps.archiveTodo !== this.props.archiveTodo) {
-            axios.get(`http://localhost:3001/sql/get`)
+            axios.get(`/sql/get`)
                 .then(res => {
                     this.setState({list: res.data});
                 })
@@ -56,7 +55,7 @@ class Todos extends Component {
     }
     componentDidMount()
     {
-        axios.get(`http://localhost:3001/sql/get`)
+        axios.get(`/sql/get`)
             .then(res => {
                 this.setState({list: res.data});
             })

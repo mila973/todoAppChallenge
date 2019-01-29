@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route} from "react-router-dom";
 import Switch from 'react-router-dom/Switch';
 import Grid from '@material-ui/core/Grid';
 import Menu from './Menu.js'
-//import Home from './home.js';
 import Todos from './Todos';
 import Archive from './Archive';
 

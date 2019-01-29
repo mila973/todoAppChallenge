@@ -23,13 +23,10 @@ const styles = theme => ({
 });
 
 class ListItemComposition extends Component{
-    constructor(props){
+   /* constructor(props){
         super(props)
-
-    }
+    }*/
     render() {
-
-
         return (
                 <MenuList style={{paddingTop: '20%'}}>
                     <Link to={'/'} style={{textDecoration: 'none'}}>

@@ -6,7 +6,6 @@ import {submitNewTodo} from "./actions/Submit_NewTodo";
 import {submitDeleteTodo} from "./actions/Submit_DeleteTodo";
 import TodoList from "./TodoList";
 import axios from 'axios';
-import moment from 'moment'
 import {submitArchiveTodo} from "./actions/Submit_ArchiveTodo";
 
 
@@ -22,7 +21,7 @@ class Archive extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if ( prevProps.deleteTodo !== this.props.deleteTodo || prevProps.archiveTodo !== this.props.archiveTodo) {
-            axios.get(`http://localhost:3001/sql/getArchive`)
+            axios.get(`/sql/getArchive`)
                 .then(res => {
                     this.setState({list: res.data});
                 })
@@ -36,7 +35,7 @@ class Archive extends Component {
     }
     componentDidMount()
     {
-        axios.get(`http://localhost:3001/sql/getArchive`)
+        axios.get(`/sql/getArchive`)
             .then(res => {
                 this.setState({list: res.data});
             })

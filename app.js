@@ -9,7 +9,6 @@ var time = require('express-timestamp');
 
 
 
-var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var sqlRouter = require('./routes/sql');
 
