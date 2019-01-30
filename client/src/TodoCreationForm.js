@@ -32,14 +32,17 @@ class NewTodo extends Component {
         this.props.submitShowDialog(false);
     }
     handleSubmit(){
-        axios.get(`/sql/create`,{
-            params:{
-                name: this.state.name,
-                description: this.state.description
-            }
-        });
-        this.props.submitNewTodo(1);
-        this.props.submitShowDialog(false);
+        if(this.state.name!=="" && this.state.description!==""  )
+        {
+            axios.get(`/sql/create`,{
+                params:{
+                    name: this.state.name,
+                    description: this.state.description
+                }
+            });
+            this.props.submitNewTodo(1);
+            this.props.submitShowDialog(false);
+        }
     }
 
     render() {
@@ -48,15 +51,19 @@ class NewTodo extends Component {
                     <DialogTitle id="form-dialog-title">New Todo</DialogTitle>
                     <DialogContent style={{color: '#039be5'}}>
                         <TextField
-                        id="standard-name"
-                        label="Name Your Todo"
-                        value={this.state.name}
-                        onChange={e=>{this.setState({name: e.target.value})}}
-                        margin="normal"
-                        fullWidth
-                        style={{color: 'white'}}
+                            error={this.state.name === ""}
+                            helperText={this.state.name === "" ? 'Empty field!' : ' '}
+                            id="standard-name"
+                            label="Name Your Todo"
+                            value={this.state.name}
+                            onChange={e=>{this.setState({name: e.target.value})}}
+                            margin="normal"
+                            fullWidth
+                            style={{color: 'white'}}
                         />
                         <TextField
+                            error={this.state.description === ""}
+                            helperText={this.state.description === "" ? 'Empty field!' : ' '}
                             id="standard-multiline-flexible"
                             label="Describe Your Todo"
                             multiline
