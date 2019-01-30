@@ -32,7 +32,7 @@ class NewTodo extends Component {
         this.props.submitShowDialog(false);
     }
     handleSubmit(){
-        if(this.state.name!=="" && this.state.description!==""  )
+        if(this.state.name!=="" && this.state.description!=="" && this.state.description.length<4000000000 && this.state.name.length<64000 )
         {
             axios.get(`/sql/create`,{
                 params:{
@@ -44,6 +44,42 @@ class NewTodo extends Component {
             this.props.submitShowDialog(false);
         }
     }
+    validateNameFieldError(){
+        if(this.state.name===""){
+                return true;
+        }
+        else{
+            if(this.state.name.length>=64000) return true;
+            else return false;
+        }
+    }
+    validateDescriptionFieldError(){
+        if(this.state.description===""){
+            return true;
+        }
+        else{
+            if(this.state.description.length>=4000000000) return true;
+            else return false;
+        }
+    }
+    validateNameFieldHelp(){
+        if(this.state.name===""){
+            return "Empty Field!";
+        }
+        else{
+            if(this.state.name.length>=64000) return "Too Long!";
+            else return '';
+        }
+    }
+    validateDescriptionFieldHelp(){
+        if(this.state.description===""){
+            return "Empty Field!";
+        }
+        else{
+            if(this.state.description.length>=4000000000) return "Too Long!";
+            else return false;
+        }
+    }
 
     render() {
         return  (
@@ -51,8 +87,8 @@ class NewTodo extends Component {
                     <DialogTitle id="form-dialog-title">New Todo</DialogTitle>
                     <DialogContent style={{color: '#039be5'}}>
                         <TextField
-                            error={this.state.name === ""}
-                            helperText={this.state.name === "" ? 'Empty field!' : ' '}
+                            error={this.validateNameFieldError()}
+                            helperText={this.validateNameFieldHelp()}
                             id="standard-name"
                             label="Name Your Todo"
                             value={this.state.name}
@@ -62,8 +98,8 @@ class NewTodo extends Component {
                             style={{color: 'white'}}
                         />
                         <TextField
-                            error={this.state.description === ""}
-                            helperText={this.state.description === "" ? 'Empty field!' : ' '}
+                            error={this.validateDescriptionFieldError()}
+                            helperText={this.validateDescriptionFieldHelp()}
                             id="standard-multiline-flexible"
                             label="Describe Your Todo"
                             multiline
